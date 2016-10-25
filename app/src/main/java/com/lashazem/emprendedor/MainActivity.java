@@ -20,6 +20,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.lashazem.emprendedor.JsonConverter;
+import com.lashazem.emprendedor.Data.MySingleton;
+import com.lashazem.emprendedor.Data.Product;
+import com.lashazem.emprendedor.Data.ProductAdapter;
 import com.lashazem.emprendedor.Utils.UILConfig;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -27,6 +31,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "MainActivity";
 
     RecyclerView rvItem;
     View layout;
@@ -96,9 +102,9 @@ public class MainActivity extends AppCompatActivity
         );
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
 
-        layout = findViewById(R.id.noInternet);
-        assert layout != null;
-        layout.setVisibility(View.INVISIBLE);
+//        layout = findViewById(R.id.noInternet);
+//        assert layout != null;
+//        layout.setVisibility(View.INVISIBLE);
 
     }
 
