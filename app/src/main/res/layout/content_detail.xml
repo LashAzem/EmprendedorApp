@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    android:background="@color/card">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/content"
+        android:orientation="vertical"
+        android:background="@color/background_floating_material_light"
+        android:elevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Name Emprendedor"
+                android:id="@+id/tvTitle"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDescription"
+                android:text="Description Text"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvTitle" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:background="@color/background_floating_material_light"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Siguenos"
+                android:id="@+id/followLabel"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:textColor="@color/colorAccent"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/icfacebook"
+                android:src="@drawable/ic_facebook"
+                android:layout_below="@+id/followLabel"
+                android:layout_alignLeft="@+id/followLabel"
+                android:layout_alignStart="@+id/followLabel" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/icinstagram"
+                android:src="@drawable/ic_instagram"
+                android:layout_alignBottom="@+id/icfacebook"
+                android:layout_toRightOf="@+id/icfacebook"
+                android:layout_toEndOf="@+id/icfacebook"
+                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/icwebsite"
+                android:src="@drawable/ic_website"
+                android:layout_alignTop="@+id/icinstagram"
+                android:layout_toRightOf="@+id/icinstagram"
+                android:layout_toEndOf="@+id/icinstagram"
+                android:layout_marginStart="45dp" />
+        </RelativeLayout>
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/container"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/background_floating_material_light">-->
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:id="@+id/ivImage1"-->
+        <!--android:scaleType="centerCrop" />-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:id="@+id/ivImage2"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true" />-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_marginTop="@dimen/activity_vertical_margin"-->
+        <!--android:id="@+id/ivImage3"-->
+        <!--android:layout_below="@+id/ivImage1"-->
+        <!--android:scaleType="centerCrop"/>-->
+
+        <!--</RelativeLayout>-->
+
+        <!--</LinearLayout>-->
+        <!--<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/link"
+            android:layout_below="@+id/content"
+            android:layout_margin="0dp">
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Website"
+                android:id="@+id/tvWebsite1"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/primary_text_default_material_dark" />
+
+        </LinearLayout>-->
+
+        <GridView
+            android:id="@+id/gv"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="280dp"
+            android:padding="0dp"
+            android:verticalSpacing="2dp"
+            android:horizontalSpacing="2dp"
+            android:alwaysDrawnWithCache="true"
+            android:numColumns="2"
+            android:stretchMode="columnWidth"
+            android:gravity="center_horizontal"
+            android:background="@color/background_floating_material_light"
+            android:columnWidth="150dp"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:scrollIndicators="none"
+            android:scrollbars="none"
+            android:fastScrollEnabled="false"
+            android:fastScrollAlwaysVisible="false" />
+
+    </LinearLayout>
+
+</RelativeLayout>

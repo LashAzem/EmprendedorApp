@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lashazem.emprendedor.DetailActivity;
 import com.lashazem.emprendedor.R;
 import com.squareup.picasso.Picasso;
 
@@ -49,17 +50,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         Picasso.with(context)
                 .load(fullUrl)
-                //.placeholder(R.drawable.placeholder)
+                .placeholder(R.drawable.placeholder)
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.ivImage);
 
         holder.ivImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                Intent in = new Intent(context, DetailActivity.class);
-//                in.putExtra("product", selectedProduct);
-//                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                context.startActivity(in);
+                Intent in = new Intent(context, DetailActivity.class);
+                in.putExtra("product", selectedProduct);
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(in);
                 //Toast.makeText(context, selectedProduct.name, Toast.LENGTH_SHORT).show();
             }
 

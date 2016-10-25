@@ -1,5 +1,8 @@
 package com.lashazem.emprendedor;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,12 +18,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.lashazem.emprendedor.JsonConverter;
+import com.kosalgeek.android.json.JsonConverter;
 import com.lashazem.emprendedor.Data.MySingleton;
 import com.lashazem.emprendedor.Data.Product;
 import com.lashazem.emprendedor.Data.ProductAdapter;
@@ -44,14 +48,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -62,50 +66,64 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //JSON
-        rvItem = (RecyclerView) findViewById(R.id.rvItem);
-        rvItem.setHasFixedSize(true);
-        rvItem.setNestedScrollingEnabled(false);
-        RecyclerView.LayoutManager manager = new GridLayoutManager(
-                getApplicationContext(), 2, GridLayoutManager.VERTICAL, false
-        );
-        rvItem.setLayoutManager(manager);
-        rvItem.setHasFixedSize(true); // to improve performance
+        if (isNetworkAvailable()) {
+            //Connected to the Internet
+            Toast.makeText(MainActivity.this, "Internet connection available", Toast.LENGTH_SHORT).show();
 
-        ImageLoader.getInstance().init(UILConfig.config(MainActivity.this));
 
-        String url = "http://api.lashazem.com/customer/product.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, response);
+            rvItem = (RecyclerView) findViewById(R.id.rvItem);
+            rvItem.setHasFixedSize(true);
+            rvItem.setNestedScrollingEnabled(false);
+            RecyclerView.LayoutManager manager = new GridLayoutManager(
+                    getApplicationContext(), 2, GridLayoutManager.VERTICAL, false
+            );
+            rvItem.setLayoutManager(manager);
+            rvItem.setHasFixedSize(true); // to improve performance
 
-                        ArrayList<Product> productList = new JsonConverter<Product>()
-                                .toArrayList(response, Product.class);
+            ImageLoader.getInstance().init(UILConfig.config(MainActivity.this));
 
-                        ProductAdapter adapter = new ProductAdapter(getApplicationContext(), productList);
-                        rvItem.setAdapter(adapter);
+            String url = "http://api.lashazem.com/customer/product.php";
+            StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                    url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d(TAG, response);
 
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        if (error != null) {
-                            Log.d(TAG, error.toString());
-                            //Toast.makeText(getApplicationContext(), "Algo esta mal :/'( Internet es requerido", Toast.LENGTH_LONG).show();
+                            ArrayList<Product> productList = new JsonConverter<Product>()
+                                    .toArrayList(response, Product.class);
+
+                            ProductAdapter adapter = new ProductAdapter(getApplicationContext(), productList);
+                            rvItem.setAdapter(adapter);
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            if (error != null) {
+                                Log.d(TAG, error.toString());
+                                //Toast.makeText(getApplicationContext(), "Algo esta mal :/'( Internet es requerido", Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
-                }
-        );
-        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+            );
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
 
-//        layout = findViewById(R.id.noInternet);
-//        assert layout != null;
-//        layout.setVisibility(View.INVISIBLE);
+            //layout = findViewById(R.id.noInternet);
+            //assert layout != null;
+            //layout.setVisibility(View.INVISIBLE);
 
+        } else {
+            //Not connected
+            Toast.makeText(MainActivity.this, "Algo esta mal :/'( Internet es requerido", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     @Override
