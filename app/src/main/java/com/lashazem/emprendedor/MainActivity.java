@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         if (isNetworkAvailable()) {
             //Connected to the Internet
-            Toast.makeText(MainActivity.this, "Internet connection available", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Internet connection available", Toast.LENGTH_SHORT).show();
 
 
             rvItem = (RecyclerView) findViewById(R.id.rvItem);

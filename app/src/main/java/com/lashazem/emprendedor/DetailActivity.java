@@ -88,7 +88,9 @@ public class DetailActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                     Intent i = new Intent(getApplicationContext(), ImageViewFull.class);
                     i.putExtra("id", position);
+                    i.putExtra("Url",imageUrls[position]);
                     startActivity(i);
+                    //Toast.makeText(DetailActivity.this, imageUrls[position], Toast.LENGTH_SHORT).show();
                 }
             });
 

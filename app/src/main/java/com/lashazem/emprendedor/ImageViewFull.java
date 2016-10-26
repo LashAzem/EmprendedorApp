@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,70 +29,27 @@ import static com.lashazem.emprendedor.DetailActivity.imageUrls;
 
 public class ImageViewFull extends AppCompatActivity {
 
-//    private ShareActionProvider mShareActionProvider;
-//    private int urlshare;
-//    public static int[] imageUrls;
-//    Product product;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.content_detail_grid_image_full);
-//        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        Intent i = getIntent();
-//        int position = i.getIntExtra("position", -1);
-//        this.urlshare = position;
-//
-//        ImageView iv = (ImageView) findViewById(R.id.image);
-//        Picasso.with(ImageViewFull.this)
-//                .load(DetailActivity.imageUrls[position])
-//                .placeholder(R.drawable.placeholder)
-//                .noFade()
-//                .into(iv);
-//        Toast.makeText(ImageViewFull.this, imageUrls[position], Toast.LENGTH_SHORT).show();
-//
-//    }
-    ImageView img;
-    Bitmap bitmap;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_detail_grid_image_full);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = getIntent();
-        int position = i.getExtras().getInt("id");
-        //ImageListAdapter imageListAdapter = new ImageListAdapter(this);
+        int position = i.getIntExtra("position", -1);
+        //this.urlshare = position;
+        String url = getIntent().getStringExtra("Url");
 
-        img = (ImageView) findViewById(R.id.image);
-        //String url = imageListAdapter.getItem(position);
-        //String url = String.valueOf(imageUrls[position]);
+        ImageView iv = (ImageView) findViewById(R.id.image);
         Picasso.with(ImageViewFull.this)
-                .load(DetailActivity.imageUrls[position])
+                .load(url)
                 .placeholder(R.drawable.placeholder)
                 .noFade()
-                .into(img);
+                .into(iv);
+        //Toast.makeText(ImageViewFull.this, url, Toast.LENGTH_SHORT).show();
 
-        //new DownloadImage().execute(url);
-    }
-    private class DownloadImage extends AsyncTask<String, Void, Bitmap> {
-
-        @Override
-        protected Bitmap doInBackground(String... URL) {
-            String imageURL = URL[0];
-            Bitmap bitmap = null;
-            try {
-                InputStream input = new java.net.URL(imageURL).openStream();
-                bitmap = BitmapFactory.decodeStream(input);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return bitmap;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap result) {
-            img.setImageBitmap(result);
-        }
     }
 }
