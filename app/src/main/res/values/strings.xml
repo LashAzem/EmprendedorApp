@@ -15,4 +15,8 @@
     <string name="otherContent">Informacion sobre la aplicación. \n\nVersion:1.0 beta 01</string>
     <string name="versionTitle">Versión</string>
     <string name="aboutApp">Información</string>
+    <string name="informacion">Información</string>
+    <string name="configuracion">Configuración</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="descubrir">Descubrir</string>
 </resources>

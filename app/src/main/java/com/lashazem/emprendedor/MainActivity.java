@@ -34,6 +34,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -73,7 +75,6 @@ public class MainActivity extends AppCompatActivity
 
 
             rvItem = (RecyclerView) findViewById(R.id.rvItem);
-            rvItem.setHasFixedSize(true);
             rvItem.setNestedScrollingEnabled(false);
             RecyclerView.LayoutManager manager = new GridLayoutManager(
                     getApplicationContext(), 2, GridLayoutManager.VERTICAL, false
@@ -95,7 +96,8 @@ public class MainActivity extends AppCompatActivity
                                     .toArrayList(response, Product.class);
 
                             ProductAdapter adapter = new ProductAdapter(getApplicationContext(), productList);
-                            rvItem.setAdapter(adapter);
+                            //rvItem.setAdapter(adapter);
+                            rvItem.setAdapter(new ScaleInAnimationAdapter(adapter));
 
                         }
                     },

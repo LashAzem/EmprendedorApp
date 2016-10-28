@@ -19,22 +19,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
             android:fitsSystemWindows="true"
             app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle">
 
             <ImageView
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@drawable/intro_text"
                 app:layout_collapseMode="parallax"
                 android:minHeight="235dp"
                 android:contentDescription="bgintrotext"
-                app:layout_collapseParallaxMultiplier="1.0" />
+                android:src="@drawable/intro_text" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
