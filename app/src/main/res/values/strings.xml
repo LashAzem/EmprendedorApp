@@ -7,4 +7,12 @@
     <string name="action_settings">Settings</string>
     <string name="introText">Descubre</string>
     <string name="introSubText">Emprendedores, artistas y diseñadores!</string>
+
+    <!-- information -->
+    <string name="title_activity_about">Información</string>
+    <string name="InfoContent">Directorio de emprendedores, diseñadores y artistas nacionales. \n \nNuestro objetivo es dar a conocer ideas innovadoras y talento nacional, y que tu puedas apoyarlos.</string>
+    <string name="infoTitle">Emprendedores</string>
+    <string name="otherContent">Informacion sobre la aplicación. \n\nVersion:1.0 beta 01</string>
+    <string name="versionTitle">Versión</string>
+    <string name="aboutApp">Información</string>
 </resources>
